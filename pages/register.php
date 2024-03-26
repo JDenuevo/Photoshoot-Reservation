@@ -101,6 +101,10 @@
       cache: false,
     });
   }
+
+  function registration(){
+    
+  }
 </script>
 
 </body>

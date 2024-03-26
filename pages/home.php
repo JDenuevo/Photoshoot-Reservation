@@ -13,6 +13,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
+
 <!-- Main Template CSS Files -->
 <link href="../assets/css/bootstraps.css" rel="stylesheet">
 <link href="../assets/css/main.css" rel="stylesheet">

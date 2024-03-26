@@ -12,12 +12,12 @@
           <h5 class="fw-bold mb-3">Login to your <span class="text-primary">Daydream</span> Account</h5>
 
           <div class="form-floating mb-3 text-start">
-            <input type="text" class="form-control rounded-4" id="username" placeholder="Username" required>
-            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control rounded-4" id="email" placeholder="email" value="asd"required>
+            <label for="email" class="form-label" ></label>
           </div>
 
           <div class="form-floating mb-3 text-start" style="position: relative;">
-            <input type="password" class="form-control rounded-4" id="floatingPassword" id="password" placeholder="Password" required>
+            <input type="password" class="form-control rounded-4"  id="password" placeholder="Password" required>
             <label for="floatingPassword">Password</label>
             <span class="toggle-password mt-1" id="togglePassword"><i class="fa-regular fa-eye"></i></span>
           </div>
@@ -53,47 +53,52 @@
   </div>
   
 </section>
-
+<script src="../src/getToken.js"></script>
 <script type="text/javascript">
 
   $(document).ready(function(){
+
     $('#btnSubmit').click(function(){
-      username=$('#username').val();
+      email=$('#email').val();
       userpass=$('#password').val();
-      if(username==""){
-        $('#msg').html('Please Enter Username');
+      if(email==""){
+        $('#msg').html('Please Enter email');
         return;
       }
       if(userpass==""){
          $('#msg').html('Please Enter Password');
         return;
       }
-      Login_Account('qwerty123',username,userpass);
+      
+      Login_Account(email,userpass);
     });
   });
 
-  function Login_Account(token,user,pass){
-  var send_data = { 'token': token ,'username': user,'password': pass };
 
-  //console.log(send_data);
+function Login_Account(email,password){
+  token = "photoreserved";
+  var send_data = {'token':token,'email': email,'password': password };
+    $.ajax({
+      url: "../api/accounts/login.php",
+      type: "POST",
+      data: send_data , 
+      beforeSend: function () {
+       // $('#msg').html('<img src="loading_circle.gif" /> <br/> Loading Page...');
+      },
+      success: function (rs) {
+        console.log(rs);
+        if (rs.status === true) {
+        $('#msg').html(rs.message);
 
-  //JQUERY AJAX
-  $.ajax({
-    url: "login_api.php", //php file
-    type: "POST", //method
-    data: send_data , //objects send to server
-    beforeSend: function () {
-      $('#msg').html('<img src="loading_circle.gif" /> <br/> Loading Page...');
-    },
-    success: function (rs) {
-      //console.log(rs);
-      $('#msg').html(rs);
-    },
-    async: true,
-    error: function (e) {
-      console.log(e);
-    },
-    cache: false,
-  });
+        } else {
+            $('#msg').html(rs.message);
+        }
+      },
+      async: true,
+      error: function (e) {
+        $('#msg').html(rs.message);
+      },
+      cache: false,
+    });
   }
 </script>
