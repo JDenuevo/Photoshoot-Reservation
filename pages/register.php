@@ -1,9 +1,31 @@
-<section class="vh-100 bg-light pt-5">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <div class="d-flex justify-content-center my-2">
-    <label class="text-danger" id="msg">Error! Wrong Credentials</label>
-  </div>
+<title>Daydream Studios PH | Register</title>
+<link href="../assets/images/logo.png" rel="icon">
 
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+<!-- Main Template CSS Files -->
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="../assets/css/main.css" rel="stylesheet">
+
+<!-- Vendor JS Files -->
+<script type="text/javascript" src="../assets/js/jquery-3.7.1.min.js"></script>
+<script src="../assets/js/bootstrap.bundle.js"></script>
+
+</head>
+
+<body>
+
+<div class="custom-body vh-100" id="content">
   <div class="container py-4">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -30,7 +52,7 @@
             <a href="#" class="text-decoration-none text-secondary">Forgot password?</a>
           </div>
 
-          <button type="button" id="btnSubmit" value="LOGIN" class="btn btn-primary btn-lg m-3 rounded-pill fw-bold w-50 mt-5">Sign in</button>
+          <button type="button" id="btnSubmit" value="LOGIN" class="btn btn-primary btn-lg m-3 rounded-pill fw-bold w-50 mt-5">Log In</button>
 
           <h5 class="text-center">or</h5>
 
@@ -51,49 +73,39 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="text-center" id="content">
+  <?php include('footer.php');?>
+</div>
   
-</section>
-
+<!-- JavaScript for AJAX -->
 <script type="text/javascript">
-
-  $(document).ready(function(){
-    $('#btnSubmit').click(function(){
-      username=$('#username').val();
-      userpass=$('#password').val();
-      if(username==""){
-        $('#msg').html('Please Enter Username');
-        return;
-      }
-      if(userpass==""){
-         $('#msg').html('Please Enter Password');
-        return;
-      }
-      Login_Account('qwerty123',username,userpass);
+  function dispContent(page) {
+    var send_data = {};
+    page += ".php";
+    $.ajax({
+      url: "../components/" + page, // Path to PHP file
+      type: "POST",
+      data: send_data,
+      beforeSend: function () {
+          $('#content').html('<img src="../assets/images/loading_circle.gif" /> <br/> Loading Page...');
+      },
+      success: function (rs) {
+        console.log(rs); // Log response to console for debugging
+        $('#content').html(rs); // Update content with response
+      },
+      error: function (e) {
+        console.log(e); // Log any errors to console
+      },
+      cache: false,
     });
-  });
+  }
 
-  function Login_Account(token,user,pass){
-  var send_data = { 'token': token ,'username': user,'password': pass };
-
-  //console.log(send_data);
-
-  //JQUERY AJAX
-  $.ajax({
-    url: "login_api.php", //php file
-    type: "POST", //method
-    data: send_data , //objects send to server
-    beforeSend: function () {
-      $('#msg').html('<img src="loading_circle.gif" /> <br/> Loading Page...');
-    },
-    success: function (rs) {
-      //console.log(rs);
-      $('#msg').html(rs);
-    },
-    async: true,
-    error: function (e) {
-      console.log(e);
-    },
-    cache: false,
-  });
+  function registration(){
+    
   }
 </script>
+
+</body>
+</html>
