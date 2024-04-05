@@ -1,7 +1,21 @@
+<style scoped>
+  .form-floating {
+    position: relative;
+  }
+  .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+</style>
+
 <section class="vh-100 bg-light pt-5">
 
   <div class="d-flex justify-content-center my-2">
-    <label class="text-danger" id="msg">Error! Wrong Credentials</label>
+    <label class="text-success" id="msg">Error! Wrong Credentials</label>
+    <label class="text-danger d-none" id="msg">Error! Wrong Credentials</label>
   </div>
 
   <div class="container py-4">
@@ -16,10 +30,10 @@
             <label for="username" class="form-label">Username</label>
           </div>
 
-          <div class="form-floating mb-3 text-start" style="position: relative;">
-            <input type="password" class="form-control rounded-4" id="floatingPassword" id="password" placeholder="Password" required>
+          <div class="form-floating mb-3 text-start rounded-4" style="position: relative;">
+            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" value="<?php if(isset($_COOKIE['qbtuyqug'])) echo $_COOKIE['qbtuyqug']; ?>" required>
             <label for="floatingPassword">Password</label>
-            <span class="toggle-password mt-1" id="togglePassword"><i class="fa-regular fa-eye"></i></span>
+            <span class="toggle-password mt-1" id="togglePassword"><i class="ti ti-eye"></i></span>
           </div>
 
           <div class="my-3 d-flex justify-content-between">
@@ -42,7 +56,7 @@
 
           <div class="d-flex justify-content-around mt-4">
             <a class="text-decoration-none text-dark">Don't have Account?</a>
-            <a class="text-decoration-none text-primary" href="#">Create Account</a>
+            <a type="button" class="text-decoration-none text-primary" id="register_label" onclick="dispContent('register')">Create Account</a>
           </div>
 
           <br><br>
@@ -53,6 +67,21 @@
   </div>
   
 </section>
+
+<script>
+const passwordInput = document.getElementById('floatingPassword');
+const togglePassword = document.getElementById('togglePassword');
+
+togglePassword.addEventListener('click', () => {
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        togglePassword.innerHTML = '<i class="ti ti-eye-off"></i>';
+    } else {
+      passwordInput.type = 'password';
+      togglePassword.innerHTML = '<i class="ti ti-eye"></i>';
+  }
+});
+</script>
 
 <script type="text/javascript">
 

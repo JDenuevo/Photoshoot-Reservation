@@ -31,7 +31,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #ffffff; /* color of the scroll thumb */
+  background-color: #4d4d4d; /* color of the scroll thumb */
   border-radius: 5px; /* roundness of the scroll thumb */
 }
 
@@ -75,7 +75,6 @@ body::-webkit-scrollbar-thumb {
   background-color: #4d4d4d;
   }
 }
-
 
 .carousel-item {
   max-width: 200px; /* Set maximum width of carousel item */
