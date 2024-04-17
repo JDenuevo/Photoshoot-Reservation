@@ -6,8 +6,8 @@ $response = array();
     if (checkToken($response)) {
 
         session_start();
-        //$createdBy = $_SESSION['userid'];
-        $createdBy =$_POST['createdBy'];
+        $createdBy = $_SESSION['userid'];
+       // $createdBy =$_POST['createdBy'];
 
         $roomID = $_POST['roomID'];
         $packageName = $_POST['packageName'];
@@ -23,12 +23,13 @@ $response = array();
         $stmt = mysqli_prepare($conn, $insertQuery);
 
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, 'isidisii', $roomID, $packageName, $pax, $price, $timeLimit, $description, $createdBy);
+            mysqli_stmt_bind_param($stmt, 'isidisi', $roomID, $packageName, $pax, $price, $timeLimit, $description, $createdBy);
             $result = mysqli_stmt_execute($stmt);
 
             if ($result) {
                 $response['status'] = true;
-                $response['message'] = "Added Room Successfully";
+                $response['message'] = "Added Packages Successfully";
+                
             } else {
                 $response['status'] = false;
                 $response['message'] = "Failed to add room";

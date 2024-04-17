@@ -17,7 +17,7 @@ if (checkToken($response)) {
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
     
-        $_SESSION['ID']=$row['ID'];
+        $_SESSION['userid']=$row['ID'];
         $_SESSION['token']=$row['Token'];
         $response['status'] = true;
         $response['message'] = "Login successful";

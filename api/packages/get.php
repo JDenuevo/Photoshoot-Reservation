@@ -14,7 +14,7 @@ $response = array();
             mysqli_stmt_bind_param($stmt, 'i', $packageId);
         } else {
             // Fetch all packages if package ID is not provided
-            $query = "SELECT * FROM packages";
+            $query = "SELECT * FROM packages where status = 1";
             $stmt = mysqli_prepare($conn, $query);
         }
 

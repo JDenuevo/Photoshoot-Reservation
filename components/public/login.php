@@ -1,3 +1,24 @@
+
+<?php
+
+// Include the database connection file
+include('../../inc/config.php');
+
+// Start session
+session_start();
+
+// Include the Google API client library
+require_once '../../vendor/autoload.php';
+
+// Initialize the Google client
+$client = new Google_Client();
+$client->setClientId('1005147137971-i84gpnju98tb1ma3lqhk2k65qk8joknh.apps.googleusercontent.com');
+$client->setClientSecret('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');
+$client->setRedirectUri('http://localhost/Photoshoot-Reservation/pages/');
+$client->addScope('email');
+
+
+?>
 <section class="vh-100 bg-light pt-5">
 
   <div class="d-flex justify-content-center my-2">
@@ -12,13 +33,13 @@
           <h5 class="fw-bold mb-3">Login to your <span class="text-primary">Daydream</span> Account</h5>
 
           <div class="form-floating mb-3 text-start">
-            <input type="text" class="form-control rounded-4" id="username" placeholder="Username" required>
-            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control rounded-4" id="email" placeholder="email" required>
+            <label for="email" class="form-label">email</label>
           </div>
 
           <div class="form-floating mb-3 text-start" style="position: relative;">
-            <input type="password" class="form-control rounded-4" id="floatingPassword" id="password" placeholder="Password" required>
-            <label for="floatingPassword">Password</label>
+            <input type="password" class="form-control rounded-4"  id="password" placeholder="Password" required>
+            <label for="password">Password</label>
             <span class="toggle-password mt-1" id="togglePassword"><i class="fa-regular fa-eye"></i></span>
           </div>
 
@@ -35,11 +56,12 @@
           <h5 class="text-center">or</h5>
 
           <div class="d-flex justify-content-center">
-            <button type="button" onclick="signIn()" class="btn btn-light btn-lg rounded-pill fw-bold" style="box-shadow: -4px 4px #BEB5B5;">
-              <img src="../assets/images/google.png" alt="Google Logo" style="width: 30px; height: 30px; margin-right: 5px; "> Continue with Google
-            </button>
-          </div>
+          <a href="<?php echo $client->createAuthUrl(); ?>" onclick="location.reload()" class="btn btn-light btn-lg rounded-pill fw-bold" style="box-shadow: -4px 4px #BEB5B5;">
+          <img src="../assets/images/google.png" alt="Google Logo" style="width: 30px; height: 30px; margin-right: 5px; "> Continue with Google
+        </a>
 
+          </div>
+          
           <div class="d-flex justify-content-around mt-4">
             <a class="text-decoration-none text-dark">Don't have Account?</a>
             <a class="text-decoration-none text-primary" href="#">Create Account</a>
@@ -56,44 +78,50 @@
 
 <script type="text/javascript">
 
+
   $(document).ready(function(){
+
     $('#btnSubmit').click(function(){
-      username=$('#username').val();
+      email=$('#email').val();
       userpass=$('#password').val();
-      if(username==""){
-        $('#msg').html('Please Enter Username');
+      if(email==""){
+        $('#msg').html('Please Enter email');
         return;
       }
       if(userpass==""){
          $('#msg').html('Please Enter Password');
         return;
       }
-      Login_Account('qwerty123',username,userpass);
+      Login_Account(email,userpass);
     });
   });
 
-  function Login_Account(token,user,pass){
-  var send_data = { 'token': token ,'username': user,'password': pass };
+  function Login_Account(email,userpass){
+  token = "photoreserved";
 
-  //console.log(send_data);
+  var send_data = {'token':token,'email': email,'password': userpass };
+    $.ajax({
+      url: "../api/accounts/login.php",
+      type: "POST",
+      data: send_data , 
+      beforeSend: function () {
+       // $('#msg').html('<img src="loading_circle.gif" /> <br/> Loading Page...');
+      },
+      success: function (rs) {
+        console.log(rs);
+        if (rs.status === true) {
+        $('#msg').html(rs.message);
+        window.location.href = 'admin.php';
 
-  //JQUERY AJAX
-  $.ajax({
-    url: "login_api.php", //php file
-    type: "POST", //method
-    data: send_data , //objects send to server
-    beforeSend: function () {
-      $('#msg').html('<img src="loading_circle.gif" /> <br/> Loading Page...');
-    },
-    success: function (rs) {
-      //console.log(rs);
-      $('#msg').html(rs);
-    },
-    async: true,
-    error: function (e) {
-      console.log(e);
-    },
-    cache: false,
-  });
+        } else {
+            $('#msg').html(rs.message);
+        }
+      },
+      async: true,
+      error: function (e) {
+        $('#msg').html(rs.message);
+      },
+      cache: false,
+    });
   }
 </script>

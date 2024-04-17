@@ -4,8 +4,8 @@ include('../../php/checkToken.php');
 $response = array();
 if (checkToken($response)){
     session_start();
-    //$createdBy = $_SESSION['userid'];
-    $createdBy =$_POST['createdBy'];
+    $createdBy = $_SESSION['userid'];
+    //$createdBy =$_POST['createdBy'];
     $packageID = $_POST['packageID'];
     $roomID = $_POST['roomID'];
     $packageName = $_POST['packageName'];

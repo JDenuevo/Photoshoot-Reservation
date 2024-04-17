@@ -3,7 +3,7 @@ include('../../inc/config.php');
 include('../../php/checkToken.php');
 $response = array();
 if (checkToken($response)){
-    $token = $_POST['token'];
+ 
         $roomid = $_POST['roomid'];
         $name = $_POST['name'];
         $capacity = $_POST['capacity'];
@@ -14,7 +14,7 @@ if (checkToken($response)){
         if ($stmt) {
             mysqli_stmt_bind_param($stmt, 'sii',   $name,  $capacity, $roomid);
             $result = mysqli_stmt_execute($stmt);
-
+            
             if ($result) {
                 $response['status'] = true;
                 $response['message'] = "Room successfully updated";

@@ -7,14 +7,14 @@ include('../../php/checkToken.php');
 if (checkToken($response)){
         $token = $_POST['token'];
         $roomId = $_POST['roomid'];
-        if ($roomId != null) {
+        if ($roomId != null ) {
             // Fetch room by ID if room ID is provided
             $query = "SELECT * FROM rooms WHERE RoomID = ? and Status = 1";
             $stmt = mysqli_prepare($conn, $query);
             mysqli_stmt_bind_param($stmt, 'i', $roomId);
         } else {
             // Fetch all rooms if room ID is not provided
-            $query = "SELECT * FROM rooms";
+            $query = "SELECT * FROM rooms where status = 1";
             $stmt = mysqli_prepare($conn, $query);
         }
 
