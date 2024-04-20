@@ -2,7 +2,7 @@
     <div class="table-responsive rounded-3 p-3 shadow-sm">
         
         <table class="table caption-top">
-            <label class="fw-bold">List of Reviews</label>
+            <h5 class="fw-bold">List of Reviews</h5>
             <hr>
             <thead>
                 <tr>

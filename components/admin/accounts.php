@@ -3,7 +3,7 @@
         
         <table class="table caption-top">
             <div class="d-flex justify-content-between">
-                <label class="fw-bold">List of Accounts</label>
+                <h5 class="fw-bold">List of Accounts</h5>
                 <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modal-accounts">
                     <i class="ti ti-square-plus"></i> Add Account
                 </button>

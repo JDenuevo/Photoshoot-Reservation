@@ -3,7 +3,7 @@
         
         <table class="table caption-top">
             <div class="d-flex justify-content-between">
-                <label class="fw-bold">List of Packages</label>
+                <h5 class="fw-bold">List of Packages</h5>
                 <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal" data-bs-target="#modal-packages">
                     <i class="ti ti-square-plus"></i> Add New Package
                 </button>
