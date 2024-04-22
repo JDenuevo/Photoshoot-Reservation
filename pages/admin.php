@@ -20,10 +20,11 @@
 <link href="../assets/css/bootstrap.css" rel="stylesheet">
 
 <!-- Vendor JS Files -->
+
 <script src="../assets/js/jquery-3.7.1.min.js"></script> 
 <script src="../assets/js/bootstrap.bundle.js"></script>
 <script src="../assets/js/navigation.js"></script>
-
+<script src="../assets/js/index.global.js"></script>
 
 <style>
   #preloader {
@@ -101,6 +102,7 @@
       },
       cache: false,
     });
+    
   }
 </script>
 
