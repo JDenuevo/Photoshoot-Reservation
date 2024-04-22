@@ -16,6 +16,7 @@ $client->setClientId('1005147137971-i84gpnju98tb1ma3lqhk2k65qk8joknh.apps.google
 $client->setClientSecret('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');
 $client->setRedirectUri('http://localhost/Photoshoot-Reservation/pages/');
 $client->addScope('email');
+$client->addScope('profile');
 
 
 ?>
@@ -110,9 +111,11 @@ $client->addScope('email');
       success: function (rs) {
         console.log(rs);
         if (rs.status === true) {
-        $('#msg').html(rs.message);
-        window.location.href = 'admin.php';
-
+      
+          if(rs.usertype == 2){
+            window.location.href = 'admin.php';
+          }
+  
         } else {
             $('#msg').html(rs.message);
         }

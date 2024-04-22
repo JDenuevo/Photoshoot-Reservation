@@ -11,40 +11,19 @@
             <hr>
             <thead>
                 <tr>
-                    <th scope="col">Package ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">Room ID</th>
                     <th scope="col">Package Name</th>
                     <th scope="col">Pax</th>
                     <th scope="col">Price</th>
                     <th scope="col">Time</th>
                     <th scope="col">Description</th>
-               
+                    <th scope="col">Created by</th>
                     <th scope="col">Action</th>            
                 </tr>
             </thead>
             <tbody id="packagesData">
-                <!-- <tr>
-                    <td>1</td>
-                    <td>100101</td>
-                    <td>Brusko</td>
-                    <td>25</td>
-                    <td>PHP 499.00</td>
-                    <td>10:00:00 AM</td>
-                    <td>Self Photoshoot</td>
-                  
-                    <td>
-                      <select class="form-select rounded-4" id="floatingSelect">
-                        <option value="1">Available</option>
-                        <option value="2">Not available</option>
-                      </select>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modal-update-packages">
-                            <i class="ti ti-edit"></i> Update
-                        </button>
-                        <button class="btn btn-sm btn-danger"><i class="ti ti-trash"></i> Remove</button>
-                    </td>
-                </tr> -->
+                
             </tbody>
         </table>
 
@@ -171,4 +150,5 @@
     </div>
   </div>
 </div>
+
 <script src="../src/jquery/packages.js"></script>

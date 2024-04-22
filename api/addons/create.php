@@ -1,60 +1,40 @@
 <?php
 include('../../inc/config.php');
-
+include('../../php/checkToken.php');
 $response = array();
+session_start();
+if (checkToken($response)){
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $description = $_POST['description'];
+    $createdby = $_SESSION['userid'];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $token = $_POST['token'];
-    
-    if ($token === 'photoreserved') {
+    $insertQuery = "INSERT INTO addons (Name, Price, Description, Created_by) VALUES (?, ?,?,?)";
+    $stmt = mysqli_prepare($conn, $insertQuery);
 
-        session_start();
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, 'sdsi', $name, $price, $description, $createdby);
+        $result = mysqli_stmt_execute($stmt);
 
-
-        $createdBy =$_POST['createdBy'];
-
-        $roomID = $_POST['roomID'];
-        $packageName = $_POST['packageName'];
-        $pax = $_POST['pax'];
-        $price = $_POST['price'];
-        $timeLimit = $_POST['timeLimit'];
-        $description = $_POST['description'];
-
-        
-        // Prepare and execute the SQL query
-        $insertQuery = "INSERT INTO packages (RoomID, PackageName, Pax, Price, TimeLimit, Description, Created_by) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?)";
-        $stmt = mysqli_prepare($conn, $insertQuery);
-
-        if ($stmt) {
-            mysqli_stmt_bind_param($stmt, 'isidisii', $roomID, $packageName, $pax, $price, $timeLimit, $description, $createdBy);
-            $result = mysqli_stmt_execute($stmt);
-
-            if ($result) {
-                $response['status'] = true;
-                $response['message'] = "Added Room Successfully";
-            } else {
-                $response['status'] = false;
-                $response['message'] = "Failed to add room";
-            }
-
-            mysqli_stmt_close($stmt);
+        if ($result) {
+            $response['status'] = true;
+            $response['message'] = "Added AddOns Successfully";
         } else {
             $response['status'] = false;
-            $response['message'] = "Prepared statement failed";
-            // Log the error for debugging
-            error_log("Prepared statement failed: " . mysqli_error($conn));
+            $response['message'] = "Added AddOns failed";
         }
+
+        mysqli_stmt_close($stmt);
     } else {
         $response['status'] = false;
-        $response['message'] = "Invalid Token";
+        $response['message'] = "Prepared statement failed";
+        // Log the error for debugging
+        error_log("Prepared statement failed: " . mysqli_error($conn));
     }
-} else {
-    $response['status'] = false;
-    $response['message'] = "Invalid request method";
 }
+       
+  
 
 // Output the response as JSON
-header('Content-Type: application/json');
 echo json_encode($response);
 ?>

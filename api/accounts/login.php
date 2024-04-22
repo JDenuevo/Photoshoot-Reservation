@@ -18,9 +18,12 @@ if (checkToken($response)) {
         $row = $result->fetch_assoc();
     
         $_SESSION['userid']=$row['ID'];
-        $_SESSION['token']=$row['Token'];
+        $response['token']=$row['Token'];
+        $_SESSION['usertype']=$row['UserType'];
         $response['status'] = true;
         $response['message'] = "Login successful";
+        $response['usertype'] =$row['UserType'];
+        
     } else {
         $response['status'] = false;
         $response['message'] = "Login failed";

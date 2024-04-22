@@ -11,7 +11,7 @@
             <hr>
             <thead>
                 <tr>
-                    <th scope="col">Room ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Capacity</th>
                     <th scope="col">Action</th>        

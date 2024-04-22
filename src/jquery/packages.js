@@ -122,13 +122,15 @@ function getRoomList(id) {
     },
     success: function (response) {
       var roomNameSelect = $("#roomName");
+      var roomNameSelect = $("#roomName");
       var roomNameUpdate = $("#updatedRoomName");
       roomNameSelect.empty();
+      roomNameUpdate.empty();
       response.rooms.forEach(function (room) {
         var option = $("<option></option>");
         option.val(room.RoomID).text(room.Name);
         roomNameSelect.append(option);
-        roomNameUpdate.append(option);
+        roomNameUpdate.append(option.clone());
       });
     },
     async: true,
@@ -151,15 +153,17 @@ function getPackages(id) {
       var packagesData = $("#packagesData");
 
       packagesData.empty();
+      count = 1;
       response.packages.forEach(function (package) {
         var row = $("<tr></tr>");
-        row.append("<td>" + package.PackageID + "</td>");
+        row.append("<td>" + count + "</td>");
         row.append("<td>" + package.RoomID + "</td>");
         row.append("<td>" + package.PackageName + "</td>");
         row.append("<td>" + package.Pax + "</td>");
         row.append("<td>" + package.Price + "</td>");
         row.append("<td>" + package.TimeLimit + "</td>");
         row.append("<td>" + package.Description + "</td>");
+        row.append("<td>" + package.CreatedName + "</td>");
         row.append(
           '<td><button type="button" class="btn btn-sm btn-info updatePackage" id="updatePackage" packageID="' +
             package.PackageID +
@@ -180,6 +184,7 @@ function getPackages(id) {
             '"><i class="ti ti-trash"></i> Remove</button></td>'
         );
         packagesData.append(row);
+        count++;
       });
     },
     async: true,

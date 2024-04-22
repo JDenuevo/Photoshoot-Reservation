@@ -3,39 +3,40 @@ include('../../inc/config.php');
 include('../../php/checkToken.php');
 $response = array();
 
-
-    $packageId = $_POST['packageID'];
+    $addonsId = $_POST['id'];
 
     if (checkToken($response)) {
-        if ($packageId != null) {
-            $query = "SELECT p.*,a.FirstName as CreatedName FROM packages p inner join accounts a on p.Created_by = a.ID WHERE PackageID = ? and p.Status = 1";
+        if ($addonsId != null) {
+            $query = "SELECT a.*,ac.FirstName as CreatedName FROM addons a inner join accounts ac on a.Created_by = ac.ID WHERE a.AddonsID = ? and a.Status = 1";
             $stmt = mysqli_prepare($conn, $query);
-            mysqli_stmt_bind_param($stmt, 'i', $packageId);
+            mysqli_stmt_bind_param($stmt, 'i', $addonsId);
         } else {
-            $query = "SELECT p.*,a.FirstName as CreatedName FROM packages p inner join accounts a on p.Created_by = a.ID where p.status = 1";
+  
+            $query = "SELECT a.*,ac.FirstName as CreatedName FROM addons a inner join accounts ac on a.Created_by = ac.ID where a.status = 1";
             $stmt = mysqli_prepare($conn, $query);
         }
+
+        // Execute the query
         $result = mysqli_stmt_execute($stmt);
 
         if ($result) {
-            $packages = array();
+            $addons = array();
             $result_set = mysqli_stmt_get_result($stmt);
             while ($row = mysqli_fetch_assoc($result_set)) {
-                $packages[] = $row;
+                $addons[] = $row;
             }
 
             $response['status'] = true;
-            $response['packages'] = $packages;
+            $response['addons'] = $addons;
         } else {
             $response['status'] = false;
             $response['message'] = "Failed to fetch packages";
-            error_log("Failed to fetch packages: " . mysqli_error($conn));
+            error_log("Failed to fetch addons: " . mysqli_error($conn));
         }
 
         mysqli_stmt_close($stmt);
     } 
 
-// Output the response as JSON
 header('Content-Type: application/json');
 echo json_encode($response);
 ?>

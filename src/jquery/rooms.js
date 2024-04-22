@@ -90,9 +90,10 @@ function getRooms(id) {
       var roomData = $("#roomData");
 
       roomData.empty();
+      count = 1;
       response.rooms.forEach(function (room) {
         var row = $("<tr></tr>");
-        row.append("<td>" + room.RoomID + "</td>");
+        row.append("<td>" + count + "</td>");
         row.append("<td>" + room.Name + "</td>");
         row.append("<td>" + room.Capacity + "</td>");
         row.append(
@@ -107,6 +108,7 @@ function getRooms(id) {
             '"><i class="ti ti-trash"></i> Remove</button></td>'
         );
         roomData.append(row);
+        count++;
       });
     },
     async: true,
