@@ -20,6 +20,7 @@ $client->addScope('profile');
 
 
 ?>
+
 <section class="vh-100 bg-light pt-5">
 
   <div class="d-flex justify-content-center my-2">
@@ -35,7 +36,7 @@ $client->addScope('profile');
 
           <div class="form-floating mb-3 text-start">
             <input type="text" class="form-control rounded-4" id="email" placeholder="email" required>
-            <label for="email" class="form-label">email</label>
+            <label for="email" class="form-label">Email</label>
           </div>
 
           <div class="form-floating mb-3 text-start" style="position: relative;">
@@ -46,7 +47,7 @@ $client->addScope('profile');
 
           <div class="my-3 d-flex justify-content-between">
             <label>
-              <input type="checkbox" name="remember" id="remember"> Remember me
+              <input type="checkbox" name="remember" id="remember" checked> Remember me
 
             </label>
             <a href="#" class="text-decoration-none text-secondary">Forgot password?</a>
@@ -64,8 +65,8 @@ $client->addScope('profile');
           </div>
           
           <div class="d-flex justify-content-around mt-4">
-            <a class="text-decoration-none text-dark">Don't have Account?</a>
-            <a class="text-decoration-none text-primary" href="#">Create Account</a>
+            <a class="text-decoration-none text-dark">Don't have an Account?</a>
+            <a type="button" class="text-decoration-none text-primary fw-bold" id="register_label" onclick="dispContent('register')">Create Account</a>
           </div>
 
           <br><br>

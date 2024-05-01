@@ -1,6 +1,5 @@
 <?php require '../function/login_validation.php';?>
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,15 +16,16 @@
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <!-- Main Template CSS Files -->
+<link href="../assets/css/swiper-bundle.min.css" rel="stylesheet">
 <link href="../assets/css/bootstrap.css" rel="stylesheet">
 <link href="../assets/css/main.css" rel="stylesheet">
 
 <!-- Vendor JS Files -->
-<script type="text/javascript" src="../assets/js/jquery-3.7.1.min.js"></script>
+<script src="../assets/js/swiper-bundle.min.js"></script>
+<script src="../assets/js/jquery-3.7.1.min.js"></script> 
 <script src="../assets/js/bootstrap.bundle.js"></script>
 
 <style>
@@ -44,30 +44,20 @@
 <body>
 
 <!-- Navbar Start -->
-<div class="px-5 custom-nav">
-  <nav class="navbar navbar-expand-lg p-0 justify-content-between" id="navbar">
-    <a onclick="dispContent('home_content')" class="navbar-brand fw-bold text-white">
-      <img src="../assets/images/logo.png" class="img-fluid w-50">
-    </a>
-    <!-- Mobile Toggle Button -->
-    <button type="button" class="navbar-toggler bg-light my-2" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <!-- Mobile Menu -->
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav d-flex justify-content-end flex-fill">
-        <a type="button" class="fs-6 fw-semibold nav-link" id="home_label" onclick="dispContent('home_content')">Home</a>
-        <a type="button" class="fs-6 fw-semibold nav-link" id="packages_label" onclick="dispContent('packages')">Packages</a>
-        <a type="button" class="fs-6 fw-semibold nav-link" id="ratings_label" onclick="dispContent('ratings')">Ratings</a>
-        <a type="button" class="fs-6 fw-semibold nav-link" id="location_label" onclick="dispContent('location')">Location</a>
-        <a type="button" class="fs-6 fw-semibold nav-link" id="login_label" onclick="dispContent('login')">Sign in</a>
+<div class="custom-body py-4">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg p-0 justify-content-between" id="navbar">
+      <a href="#" onclick="refreshPage()" class="navbar-brand fw-bold text-white">
+        <img src="../assets/images/logo.png" class="img-fluid">
+      </a>
+      <div class="navbar-nav ms-auto">
+        <a type="button" class="text-white fs-1" id="login_label" onclick="dispContent('login')"><i class="ti ti-login"></i></a>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </div>
 
-<div class="custom-body vh-100" id="content">
-  <!-- Initial content loaded from home_content.php -->
+<div id="content">
   <?php include('../components/public/home_content.php');?>
 </div>
 
@@ -80,8 +70,12 @@
   <img src="../assets/images/preloader.gif" />
 </div>
 
-<!-- JavaScript for AJAX -->
+<!-- JavaScript for AJAX and Swiper Slider -->
 <script type="text/javascript">
+  function refreshPage() {
+    location.reload();
+  }
+  
   window.token="asd";
   function dispContent(page) {
     var send_data = {};
@@ -91,8 +85,7 @@
       type: "POST",
       data: send_data,
       beforeSend: function () {
-      
-          $('#preloader').show(); // Show preloader
+        $('#preloader').show(); // Show preloader
       },
       success: function (rs) {
         console.log(rs); // Log response to console for debugging
@@ -105,6 +98,45 @@
       cache: false,
     });
   }
+
+  var swiper = new Swiper(".slide-content",{
+    slidesPerView: 3,
+    spaceBetween: 10,
+    loop: true,
+    centeredSlides: 'true',
+    fade: 'true',
+    grabCursor: 'true',
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+      dynamicBullets: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+    autoplay: {
+      delay: 2000,
+    },
+    speed: 800,
+    breakpoints:{
+      0: {
+        slidesPerView: 1,
+      },
+      640: {
+        slidesPerView: 1,
+      },
+      768: {
+        slidesPerView: 3,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+      1200: {
+        slidesPerView: 3,
+      },
+    },
+  });
 </script>
 
 

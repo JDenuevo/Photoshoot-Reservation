@@ -54,7 +54,7 @@
 
           <div class="d-flex justify-content-around mt-4">
             <a class="text-decoration-none text-dark">Already have Daydream Account?</a>
-            <a type="button" class="text-decoration-none text-primary" id="login_label" onclick="dispContent('login')">Login</a>
+            <a type="button" class="text-decoration-none text-primary fw-bold" id="login_label" onclick="dispContent('login')">Login</a>
           </div>
 
           <br><br>

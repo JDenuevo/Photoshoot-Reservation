@@ -37,27 +37,11 @@
               </a>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" type="button" id="rooms_label" onclick="dispContent('rooms')">
-                <span>
-                  <i class="ti ti-square"></i>
-                </span>
-                <span class="hide-menu">Rooms</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
               <a class="sidebar-link" type="button" id="packages_label" onclick="dispContent('packages')">
                 <span>
                   <i class="ti ti-packages"></i>
                 </span>
                 <span class="hide-menu">Packages</span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" type="button" id="packages_label" onclick="dispContent('addons')">
-                <span>
-                  <i class="ti ti-square-plus-2"></i>
-                </span>
-                <span class="hide-menu">Add Ons</span>
               </a>
             </li>
             <li class="sidebar-item">

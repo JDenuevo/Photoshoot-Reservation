@@ -1,9 +1,9 @@
-<div class="container text-white p-5">
+<div class="my-auto">
 
-    <div class="row">
+    <div class="row text-light py-5">
       
-      <div class="col-6">
-        <h4 class="text-light">Daydream Studios - Caloocan</h4>
+      <div class="col-6 my-auto">
+        <h4 class="text-light fw-bold">Daydream Studios - Caloocan</h4>
         <p>Welcome to Daydream Studios PH in Caloocan! Our accessible flagship location is a hub of creativity and innovation, designed to turn your ideas into stunning realities. Here, daydreams take form. Start your creative journey with us today!</p>
       </div>
       <div class="col-6">
