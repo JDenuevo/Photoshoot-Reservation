@@ -140,3 +140,17 @@
     },
   });
 </script>
+
+<script>
+  // Function to add active class to the sidebar item on page load
+  function addActiveClass() {
+    const dashboardLink = document.getElementById('dashboard_label');
+    const currentPage = window.location.pathname; // Get the current page URL path
+    // Check if the current page is admin.php
+    if (currentPage.includes('admin.php')) {
+      dashboardLink.classList.add('active'); // Add the active class if on admin.php
+    }
+  }
+  // Call the function when the page finishes loading
+  window.addEventListener('load', addActiveClass);
+</script>

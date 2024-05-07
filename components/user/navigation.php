@@ -6,7 +6,7 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a type="button" onclick="dispContent('dashboard')" class="logo-img w-100">
+          <a type="button" onclick="dispContent('home')" class="logo-img w-100">
             <div class="text-center">
                 <div style="display: inline-block; vertical-align: middle;">
                   <img src="../assets/images/logo.png" alt="logo" class="img-fluid"/>
@@ -29,27 +29,30 @@
               <span class="hide-menu text-light">GENERAL</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" type="button" id="dashboard_label" onclick="dispContent('dashboard')">
+              <a class="sidebar-link" type="button" id="home_label" onclick="dispContent('home')">
                 <span>
-                  <i class="ti ti-layout-dashboard"></i>
+                  <i class="ti ti-home"></i>
                 </span>
-                <span class="hide-menu">Dashboard</span>
+                <span class="hide-menu">Home</span>
               </a>
             </li>
-            <li class="sidebar-item">
-              <a class="sidebar-link" type="button" id="packages_label" onclick="dispContent('packages')">
-                <span>
-                  <i class="ti ti-packages"></i>
-                </span>
-                <span class="hide-menu">Packages</span>
-              </a>
-            </li>
+
             <li class="sidebar-item">
               <a class="sidebar-link" type="button" id="reservations_label" onclick="dispContent('reservations')">
                 <span>
                   <i class="ti ti-address-book"></i>
                 </span>
-                <span class="hide-menu">Reservations</span>
+                <span class="hide-menu">Reservation</span>
+                
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a class="sidebar-link" type="button" id="reservations_label" onclick="dispContent('payment')">
+                <span>
+                  <i class="ti ti-credit-card"></i>
+                </span>
+                <span class="hide-menu">Payment</span>
                 <span class="badge bg-info position-absolute top-50 start-100 translate-middle rounded-circle" style="font-size: 0.75rem;">1</span>
               </a>
             </li>
@@ -61,18 +64,17 @@
               <span class="hide-menu">MANAGE</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" type="button" id="accounts_label" onclick="dispContent('accounts')">
+              <a class="sidebar-link" type="button" id="profile_label" onclick="dispContent('profile')">
                 <span>
                   <i class="ti ti-users"></i>
                 </span>
-                <span class="hide-menu">Accounts</span>
+                <span class="hide-menu">Profile</span>
               </a>
             </li>
             <li class="sidebar-item">
               <a class="sidebar-link" type="button" id="reviews_label" onclick="dispContent('reviews')">
                 <span>
                   <i class="ti ti-sparkles"></i>
-                  <span class="badge bg-info position-absolute top-50 start-100 translate-middle rounded-circle" style="font-size: 0.75rem;">5</span>
                 </span>
                 <span class="hide-menu">Reviews</span>
               </a>
@@ -123,4 +125,18 @@
         },
     },
   });
+</script>
+
+<script>
+  // Function to add active class to the sidebar item on page load
+  function addActiveClass() {
+    const dashboardLink = document.getElementById('home_label');
+    const currentPage = window.location.pathname; // Get the current page URL path
+    // Check if the current page is admin.php
+    if (currentPage.includes('user.php')) {
+      dashboardLink.classList.add('active'); // Add the active class if on admin.php
+    }
+  }
+  // Call the function when the page finishes loading
+  window.addEventListener('load', addActiveClass);
 </script>

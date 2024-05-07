@@ -21,6 +21,8 @@
 
 <!-- Vendor JS Files -->
 
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
 <script src="../assets/js/jquery-3.7.1.min.js"></script> 
 <script src="../assets/js/bootstrap.bundle.js"></script>
 <script src="../assets/js/navigation.js"></script>
@@ -64,7 +66,7 @@
     
         <div class="vh-100" id="content">
           <!-- Initial content loaded from home_content.php -->
-          <?php include('../components/user/dashboard.php');?>
+          <?php include('../components/user/home.php');?>
         </div>
         
         <!-- Preloader -->

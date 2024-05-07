@@ -4,6 +4,7 @@
     --fc-event-border-color: #FFFFFF;
     --fc-event-hover-color: #002F5F;
 }
+
 .card {
   border-radius: 10px;
   filter: drop-shadow(0 5px 10px 0 #FFFFFF);
