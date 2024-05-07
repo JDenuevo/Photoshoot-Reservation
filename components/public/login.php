@@ -115,6 +115,8 @@ $client->addScope('profile');
       
           if(rs.usertype == 2){
             window.location.href = 'admin.php';
+          }else if (rs.usertype == 1){
+            window.location.href = 'user.php';
           }
   
         } else {

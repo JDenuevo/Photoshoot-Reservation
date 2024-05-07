@@ -27,9 +27,9 @@ if (isset($_GET['code'])) {
 
       if (checkIfEmailExist($email)){
         if(getUserType($email) == 2){
-            echo 'admin';
+          header('location: admin.php');
         }else{
-          echo 'user';
+         header('location: user.php');
         }
        
       }else{

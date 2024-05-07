@@ -23,29 +23,29 @@
   <div class="row">
     <div class="col-6">
       <div class="form-floating">
-        <select class="form-select" id="" aria-label="Floating label select example">
+        <select class="form-select" id="package" aria-label="Floating label select example">
           <option selected disabled>Open this select menu</option>
-          <option value="">Digital Package</option>
-          <option value="">Digital and Print Package</option>
+          
         </select>
         <label for="floatingSelect">Select Main Package</label>
       </div>
     </div>
-    <div class="col-6">
+    
+    <!-- <div class="col-6">
       <div class="form-floating">
-        <select class="form-select" id="" aria-label="Floating label select example">
+        <select class="form-select" id="package" aria-label="Floating label select example">
           <option selected disabled>Open this select menu</option>
-          <option value="">Package A</option>
-          <option value="">Package B</option>
-          <option value="">Package C</option>
-          <option value="">Package D</option>
+          <option value="1">Package A</option>
+          <option value="2">Package B</option>
+          <option value="3">Package C</option>
+          <option value="4">Package D</option>
         </select>
         <label for="floatingSelect">Select type of Package</label>
       </div>
     </div>
-  </div>
+  </div> -->
 
-  <button class="btn btn-primary btn-lg rounded-pill fw-semibold mt-5 w-50" type="submit">Reserve Slot</button>
+  <button class="btn btn-primary btn-lg rounded-pill fw-semibold mt-5 w-50" type="button" id="reserveBtn">Reserve Slot</button>
 
   <!-- <h4 class="fw-bold my-3">Add Ons</h4>
 
@@ -106,3 +106,18 @@
 
 
 </div>
+<script>
+  $(document).ready(function(){
+    $('#reserveBtn').click(function (){
+      var packageID = $('#package').val();
+
+      alert(packageID);
+    });
+  });
+
+  function getPackage(id){
+    $.ajax({
+      url:'../api/package/get.php';
+    })
+  }
+</script>

@@ -19,10 +19,11 @@ if (checkToken($response)) {
     
         $_SESSION['userid']=$row['ID'];
         $response['token']=$row['Token'];
-        $_SESSION['usertype']=$row['UserType'];
+        $response['userid']=$row['ID'];
+        $response['usertype']=$row['UserType'];
         $response['status'] = true;
         $response['message'] = "Login successful";
-        $response['usertype'] =$row['UserType'];
+
         
     } else {
         $response['status'] = false;
