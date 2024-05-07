@@ -1,7 +1,7 @@
 <div class="custom-body">
   <div class="">
 
-    <div class="container">
+    <div class="container vh-100">
       <div class="row text-white">
 
         <div class="col-md-6 my-auto">

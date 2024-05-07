@@ -37,7 +37,7 @@
     </div>
 
     <div class="">
-      <label for="image" class="btn btn-dark rounded-pill cursor-pointer">Edit Profile</label>
+      <label for="image" class="btn btn-dark rounded-pill cursor-pointer fw-semibold">Edit Profile</label>
       <input class="btn btn-dark rounded-pill" type="file" name="image" id="image" accept=".jpg, .jpeg, .png" onchange="uploadImage()" required style="display: none;">
     </div>
   </div>
@@ -74,5 +74,8 @@
       </div>
     </div>
   </div>
+
+  <button class="btn btn-primary btn-lg rounded-pill fw-semibold mt-5 w-50" type="submit">Save Changes</button>
+
 
 </div>

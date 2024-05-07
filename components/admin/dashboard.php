@@ -51,7 +51,7 @@
     <hr>
 
     <div class="container">
-        <div class="row">
+        <div class="row g-3">
             <div class="col-12 col-lg-3">
                 <div class="card h-100">
                     <div class="d-flex justify-content-between">
@@ -93,7 +93,6 @@
         <div class="d-flex justify-content-between mt-4">
             <h5 class="date text-primary"><?php echo $currentDate?> </h5>
         </div>
-
     
         <div class="container">
             <?php include '../components/admin/calendar.php' ?>
@@ -104,11 +103,3 @@
     </div>
 
 </div>
-
-<script>
-
-
-  
-
-
-</script>
