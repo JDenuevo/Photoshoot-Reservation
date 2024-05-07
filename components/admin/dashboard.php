@@ -91,8 +91,7 @@
         </div>
 
         <div class="d-flex justify-content-between mt-4">
-            <h5 class="date text-primary"></h5>
-            <h5 class="time text-primary"></h5>
+            <h5 class="date text-primary"><?php echo $currentDate?> </h5>
         </div>
 
     
@@ -108,40 +107,8 @@
 
 <script>
 
-    function updateDate() {
-        $.ajax({
-        url: '../php/get_date.php', // Path to PHP script that returns the date
-        type: 'GET',
-        success: function(data) {
-            $('.date').text(data); // Update the date element with the fetched date
-        },
-        error: function() {
-            $('.date').text('Error fetching date.'); // Display error message if date fetch fails
-        }
-        });
-    }
 
-    function updateTime() {
-        $.ajax({
-        url: '../php/get_time.php', // Path to PHP script that returns the time
-        type: 'GET',
-        success: function(data) {
-            $('.time').text(data); // Update the time element with the fetched time
-        },
-        error: function() {
-            $('.time').text('Error fetching time.'); // Display error message if time fetch fails
-        }
-        });
-    }
+  
 
-    // Update the date and time every second
-    setInterval(function() {
-        updateDate();
-        updateTime();
-    }, 1000);
-
-    // Initial call to display the date and time
-    updateDate();
-    updateTime();
 
 </script>

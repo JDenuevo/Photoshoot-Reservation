@@ -1,3 +1,7 @@
+<?php
+date_default_timezone_set('Asia/Manila'); 
+$currentDate = date('l, F j, Y'); 
+?>
 <!DOCTYPE html>
 <html>
 <head>
