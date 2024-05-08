@@ -1,7 +1,7 @@
 <div class="custom-body">
   <div class="">
 
-    <div class="container vh-100">
+    <div class="container py-5">
       <div class="row text-white">
 
         <div class="col-md-6 my-auto">
@@ -17,7 +17,7 @@
         </div>
 
         <div class="col-md-6 text-center my-5">
-          <img src="../assets/images/intro.jpg" class="img-fluid rounded w-50 mx-auto my-3">
+          <img src="../assets/images/intro.jpg" class="img-fluid rounded w-50 mx-auto my-3 d-none d-md-block d-lg-block">
         </div>
 
       </div>

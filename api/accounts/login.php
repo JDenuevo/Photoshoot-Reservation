@@ -27,7 +27,7 @@ if (checkToken($response)) {
         
     } else {
         $response['status'] = false;
-        $response['message'] = "Login failed";
+        $response['message'] = "Your credentials doesn't match.";
     }
 }
 

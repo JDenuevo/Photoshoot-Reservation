@@ -6,7 +6,7 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a type="button" onclick="dispContent('dashboard')" class="logo-img w-100">
+          <a type="button" onclick="window.location.reload()" class="logo-img w-100">
             <div class="text-center">
                 <div style="display: inline-block; vertical-align: middle;">
                   <img src="../assets/images/logo.png" alt="logo" class="img-fluid"/>
@@ -29,7 +29,7 @@
               <span class="hide-menu text-light">GENERAL</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" type="button" id="dashboard_label" onclick="dispContent('dashboard')">
+              <a class="sidebar-link" type="button" id="dashboard_label" onclick="window.location.reload()">
                 <span>
                   <i class="ti ti-layout-dashboard"></i>
                 </span>
@@ -52,14 +52,14 @@
                 <span class="hide-menu">Packages</span>
               </a>
             </li>
-            <li class="sidebar-item">
+            <!-- <li class="sidebar-item">
               <a class="sidebar-link" type="button" id="packages_label" onclick="dispContent('addons')">
                 <span>
                   <i class="ti ti-square-plus-2"></i>
                 </span>
                 <span class="hide-menu">Add Ons</span>
               </a>
-            </li>
+            </li> -->
             <li class="sidebar-item">
               <a class="sidebar-link" type="button" id="reservations_label" onclick="dispContent('reservations')">
                 <span>
