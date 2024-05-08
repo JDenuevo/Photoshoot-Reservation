@@ -20,13 +20,13 @@
 
           <div class="card swiper-slide border border-0">
             <div class="image-container">
-              <img src="../assets/images/jm1.jpg" class="card-img-top rounded" alt="">
+              <img src="../assets/images/denver.jpg" class="card-img-top rounded" alt="">
             </div>
           </div>
 
           <div class="card swiper-slide border border-0">
             <div class="image-container">
-              <img src="../assets/images/jm2.jpg" class="card-img-top rounded" alt="">
+              <img src="../assets/images/pat.jpg" class="card-img-top rounded" alt="">
             </div>
           </div>
 

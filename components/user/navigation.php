@@ -6,7 +6,7 @@
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-          <a type="button" onclick="dispContent('home')" class="logo-img w-100">
+          <a type="button" onclick="window.location.reload()" class="logo-img w-100">
             <div class="text-center">
                 <div style="display: inline-block; vertical-align: middle;">
                   <img src="../assets/images/logo.png" alt="logo" class="img-fluid"/>
@@ -29,7 +29,7 @@
               <span class="hide-menu text-light">GENERAL</span>
             </li>
             <li class="sidebar-item">
-              <a class="sidebar-link" type="button" id="home_label" onclick="dispContent('home')">
+              <a class="sidebar-link" type="button" id="home_label" onclick="window.location.reload()">
                 <span>
                   <i class="ti ti-home"></i>
                 </span>

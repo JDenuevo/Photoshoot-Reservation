@@ -24,7 +24,7 @@ $client->addScope('profile');
 <section class="vh-100 bg-light pt-5">
 
   <div class="d-flex justify-content-center my-2">
-    <label class="text-danger" id="msg">Error! Wrong Credentials</label>
+    <label class="text-danger" id="msg"></label>
   </div>
 
   <div class="container py-4">
