@@ -11,41 +11,19 @@
             <hr>
             <thead>
                 <tr>
-                    <th scope="col">Reservation ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">Reserved_by</th>
-                    <th scope="col">Package ID</th>
+                    <th scope="col">Package</th>
                     <th scope="col">Date</th>
                     <th scope="col">Time</th>
-                    <th scope="col">Balance</th>
                     <th scope="col">Created_at</th>
-                    <th scope="col">Approved_by</th> 
+                    <th scope="col">Payment Status</th> 
                     <th scope="col">Status</th> 
                     <th scope="col">Action</th>            
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Gmar</td>
-                    <td>100101</td>
-                    <td>April 15, 2024</td>
-                    <td>10:00:00 AM</td>
-                    <td>PHP 499.00</td>
-                    <td>March 12, 2024</td>
-                    <td>Admin Julie</td>
-                    <td>
-                      <select class="form-select rounded-4" id="floatingSelect">
-                        <option value="1">Reserved</option>
-                        <option value="2">Available</option>
-                      </select>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modal-update-reservations">
-                            <i class="ti ti-edit"></i> Update
-                        </button>
-                        <button class="btn btn-sm btn-danger"><i class="ti ti-trash"></i> Remove</button>
-                    </td>
-                </tr>
+            <tbody id='reservationData'>
+             
             </tbody>
         </table>
 
@@ -195,3 +173,4 @@
     </div>
   </div>
 </div>
+<script src="../src/jquery/reservation.js"></script>

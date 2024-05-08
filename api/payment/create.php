@@ -5,26 +5,24 @@ include('../../php/checkToken.php');
 $response = array();
 session_start();
 
-    $reservedBy = mysqli_real_escape_string($conn, $_POST['reservedby']);
-    $packageID = mysqli_real_escape_string($conn, $_POST['packageID']);
-    $date= mysqli_real_escape_string($conn, $_POST['date']);
-    $time= mysqli_real_escape_string($conn, $_POST['time']);
+    $resercationID = mysqli_real_escape_string($conn, $_POST['reservationID']);
+    $amount = mysqli_real_escape_string($conn, $_POST['amount']);
+    $transactionID= mysqli_real_escape_string($conn, $_POST['transactionID']);
 
-    
-            // Insert reservation into the database
-            $insertQuery = "INSERT INTO reservation (Reserved_by, PackageID, Date,Time) VALUES (?, ?, ?,?)";
+
+            $insertQuery = "INSERT INTO payment (ReservationID, Amount, TransactionID) VALUES (?, ?, ?)";
             $stmt = mysqli_prepare($conn, $insertQuery);
 
             if ($stmt) {
-                mysqli_stmt_bind_param($stmt, 'iiss', $reservedBy, $packageID, $date,$time);
+                mysqli_stmt_bind_param($stmt, 'iii', $resercationID, $amount, $transactionID);
                 $result = mysqli_stmt_execute($stmt);
 
                 if ($result) {
                     $response['status'] = true;
-                    $response['message'] = "Reservation added successfully";
+                    $response['message'] = "Payment added successfully";
                 } else {
                     $response['status'] = false;
-                    $response['message'] = "Failed to add reservation";
+                    $response['message'] = "Failed to add Payment";
                 }
 
                 mysqli_stmt_close($stmt);
