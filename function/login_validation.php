@@ -96,7 +96,8 @@ function getUserType($email){
     $sql = "INSERT INTO accounts (Email, FirstName,LastName) VALUES ('$email', '$fname', '$lname')";
 
     if (mysqli_query($conn, $sql)) {
-      
+      $inserted_id = mysqli_insert_id($conn);
+      $_SESSION['userid'] = $inserted_id;
        return true;
     } else {
       return false;
