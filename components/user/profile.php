@@ -33,12 +33,12 @@
 
   <div class="d-flex align-items-center">
     <div class="me-2">
-      <img id="profileImage" src="../assets/images/baby.jpg" class="img-fluid rounded-circle" width="150px">
+      <!-- <img id="profileImage" src="../assets/images/person.jpg" class="img-fluid rounded-circle" width="150px"> -->
     </div>
 
     <div class="">
-      <label for="image" class="btn btn-dark rounded-pill cursor-pointer fw-semibold">Edit Profile</label>
-      <input class="btn btn-dark rounded-pill" type="file" name="image" id="image" accept=".jpg, .jpeg, .png" onchange="uploadImage()" required style="display: none;">
+      <!-- <label for="image" class="btn btn-dark rounded-pill cursor-pointer fw-semibold">Edit Profile</label> -->
+      <!-- <input class="btn btn-dark rounded-pill" type="file" name="image" id="image" accept=".jpg, .jpeg, .png" onchange="uploadImage()" required style="display: none;"> -->
     </div>
   </div>
 

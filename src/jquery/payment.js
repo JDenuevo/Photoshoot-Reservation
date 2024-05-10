@@ -86,14 +86,57 @@ function getUserReservation(userid) {
             linkbtn =
               '<li><a href="' +
               link +
-              '"target="_blank" class="btn btn-primary mt-5" type="button">Picture Here</a></li>';
+              '"target="_blank" class="btn btn-primary mt-5 mb-3" type="button">Picture Here</a></li>';
           }
-          var total = "";
-          var down = "";
-          var btn = "";
-          if (reservation.Status != 2) {
+
+          var cardHtml = `
+                <div class="col-4">
+                    <div class="card bg-light border border-dark">
+                        <div class="card-header">
+                            <h5 class="card-title my-auto">${reservation.PackageName}</h5>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <ul class="card-text fs-6">
+                                <li>Payment Status: ${reservation.payment_status}</li>
+                                <li>1 - ${reservation.Pax} Persons</li>
+                                <li>${reservation.Description}</li>
+                                <li>---------------------------------</li>
+                                <li>${formattedDate} | ${formattedTime}</li>
+                                <li>30 Minutes</li>
+                                ${linkbtn}
+                    `;
+
+          if (reservation.Status == 0) {
+            cardHtml += `
+                                <h5 class="mt-5">This Reservation is Pending</h5>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                `;
+          } else if (reservation.Status == 3) {
+            cardHtml += `
+                                <h5 class="mt-5">This Reservation is Declined</h5>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                `;
+          } else if (reservation.Status == 2) {
+            cardHtml += `
+                                <h5>This Reservation is Done</h5>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                `;
+          } else {
+            var totalHtml = "";
+            var downHtml = "";
+            var btnHtml = "";
+
             if (reservation.payment_status === "Complete") {
-              btn =
+              btnHtml =
                 '<button type="button" class="btn btn-primary paymentModal" paymentStatus="' +
                 reservation.payment_status +
                 '" total_price="' +
@@ -105,11 +148,8 @@ function getUserReservation(userid) {
                 '" package="' +
                 reservation.PackageName +
                 '" disabled>Payment Completed</button>';
-
-              total = "";
-              down = "";
             } else {
-              btn =
+              btnHtml =
                 '<button type="button" class="btn btn-primary paymentModal" paymentStatus="' +
                 reservation.payment_status +
                 '" total_price="' +
@@ -122,42 +162,26 @@ function getUserReservation(userid) {
                 reservation.PackageName +
                 '">Payment Reservation Slot</button>';
 
-              var total =
-                '<li class="fw-bold  fs-5">Downpayment : ' +
-                (reservation.Price - reservation.total_amount_pay) +
-                "</li>";
-              var down =
-                '<li class="fw-bold mt-5 fs-5">Total : ' +
+              totalHtml =
+                '<li class="fw-bold mt-5 fs-5">Downpayment : ' +
                 reservation.total_amount_pay +
                 "</li>";
+              downHtml =
+                '<li class="fw-bold  fs-5">Total : ' +
+                (reservation.Price - reservation.total_amount_pay) +
+                "</li>";
             }
-          } else {
-            btn = "<h5>This Reservation is Done</h5>";
-          }
 
-          var cardHtml = `
-            <div class="col-4">
-              <div class="card bg-light border border-dark">
-                <div class="card-header">
-                  <h5 class="card-title my-auto">${reservation.PackageName}</h5>
+            cardHtml += `
+                                ${totalHtml}
+                                ${downHtml}
+                            </ul>
+                            ${btnHtml}
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body d-flex flex-column">
-                  <ul class="card-text fs-6">
-                  <li>Payment Status: ${reservation.payment_status}</li>
-                    <li>1 - ${reservation.Pax} Persons</li>
-                    <li>${reservation.Description}</li>
-                    <li>---------------------------------</li>
-                     <li>${formattedDate} | ${formattedTime}</li>
-                     <li>30 Minutes</li>
-                     ${linkbtn}
-                      ${down}
-                    ${total}
-                  </ul>
-                  ${btn}
-                </div>
-              </div>
-            </div>
-          `;
+                `;
+          }
 
           // Append the card HTML to the reservationCards container
           reservationCards.append(cardHtml);

@@ -43,6 +43,12 @@ $(document).ready(function () {
     var link = "";
     updateStatus(id, status, link);
   });
+  $("#reservationData").on("click", ".decline", function () {
+    var status = $(this).val();
+    var id = $(this).attr("reservationid");
+    var link = "";
+    updateStatus(id, status, link);
+  });
   $("#reservationData").on("click", ".markDone", function () {
     var id = $(this).attr("reservationid");
     var status = $(this).val();
@@ -144,7 +150,9 @@ function getReservation(reservedby) {
           row.append(
             '<td><button class="btn btn-sm btn-primary approved" id="approved" value ="1" reservationid="' +
               reservation.ReservationID +
-              '">Approved</button></td>'
+              '">Approved</button><button class="btn btn-sm btn-primary decline" id="decline" value ="3" reservationid="' +
+              reservation.ReservationID +
+              '">Declined</button></td>'
           );
         } else if (reservation.Status == 1) {
           row.append("<td>Reserved</td>");
@@ -156,6 +164,9 @@ function getReservation(reservedby) {
         } else if (reservation.Status == 2) {
           row.append("<td>Done</td>");
           row.append("<td>Done</td>");
+        } else if (reservation.Status == 3) {
+          row.append("<td>Declined</td>");
+          row.append("<td>Declined</td>");
         }
 
         reservationData.append(row);

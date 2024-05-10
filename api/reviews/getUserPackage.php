@@ -12,8 +12,7 @@ include('../../php/checkToken.php');
             LEFT JOIN reservation r ON p.PackageID = r.PackageID
             LEFT JOIN reviews rev ON rev.PackageID = p.PackageID
             WHERE r.Reserved_by = ? 
-            AND r.Status = 2 
-            AND rev.PackageID IS NULL;
+            AND r.Status = 2 ;
             ";
             $stmt = mysqli_prepare($conn, $query);
             mysqli_stmt_bind_param($stmt, 'i', $userid);

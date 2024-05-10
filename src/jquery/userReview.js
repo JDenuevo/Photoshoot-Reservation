@@ -1,16 +1,23 @@
 $(document).ready(function () {
   var userid = $("#userid").val();
   getPackageList(userid);
-
-  $(".star-icon").click(function () {
+  $(".star-icon").click(function (event) {
+    event.stopPropagation();
     const rating = $(this).data("rating");
     $(".star-icon").removeClass("active");
     for (let i = 0; i < rating; i++) {
       $(".star-icon").eq(i).addClass("active");
     }
   });
+  $("textarea").click(function (event) {
+    event.stopPropagation();
+  });
+  $("select").click(function (event) {
+    event.stopPropagation();
+  });
 
   $(document.body).click(function (event) {
+    event.stopPropagation();
     const starRatingSection = $(".star-rating");
     if (
       !starRatingSection.is(event.target) &&
@@ -22,6 +29,7 @@ $(document).ready(function () {
 
   $("#btnRate").click(function () {
     const rating = $(".star-icon.active").length;
+    alert(rating);
     const comment = $("#floatingTextarea").val();
     const packageid = $("#packages").val();
     var send_data = {

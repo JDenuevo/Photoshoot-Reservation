@@ -1,6 +1,18 @@
 $(document).ready(function () {
   getPackageList(null);
+  let currentDate = new Date();
 
+  // Get tomorrow's date
+  let tomorrow = new Date(currentDate);
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  // Format the date as yyyy-mm-dd (required format for input type date)
+  let tomorrowFormatted = tomorrow.toISOString().split("T")[0];
+
+  // Set the minimum date attribute for the input field
+  document
+    .getElementById("reservationDate")
+    .setAttribute("min", tomorrowFormatted);
   $("#reserveBtn").click(function () {
     var reservedby = $("#userid").val();
     var packageID = $("#packages").val();

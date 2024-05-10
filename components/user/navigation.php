@@ -53,7 +53,7 @@
                   <i class="ti ti-credit-card"></i>
                 </span>
                 <span class="hide-menu">Payment</span>
-                <span class="badge bg-info position-absolute top-50 start-100 translate-middle rounded-circle" style="font-size: 0.75rem;">1</span>
+                <span class="badge bg-info position-absolute top-50 start-100 translate-middle rounded-circle" id="paymentCount"style="font-size: 0.75rem;">0</span>
               </a>
             </li>
 
@@ -128,7 +128,14 @@
 </script>
 
 <script>
-  // Function to add active class to the sidebar item on page load
+ $.ajax({
+    url: "../api/count/getPaymentCount.php",
+    type: "POST",
+    dataType: "json",
+    success: function (response) {
+     $('#paymentCount').text(response);
+    }
+  });
   function addActiveClass() {
     const dashboardLink = document.getElementById('home_label');
     const currentPage = window.location.pathname; // Get the current page URL path

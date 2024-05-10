@@ -14,7 +14,7 @@ if ($reservedby != null){
     END AS payment_status
 FROM reservation r 
 INNER JOIN accounts a ON a.ID = r.Reserved_by
-INNER JOIN packages p ON p.PackageID = r.PackageID where r.Status IN (1,2) and r.reserved_by = '$reservedby'";
+INNER JOIN packages p ON p.PackageID = r.PackageID where r.reserved_by = '$reservedby' order by r.ReservationID desc";
 }else{
     $query = "SELECT CONCAT(a.FirstName ,' ', a.LastName) AS reserved_by,p.Pax,p.Price,p.Description,p.PackageName,r.Date,r.Time,r.Created_at As reserved_date,r.Status,r.ReservationID,r.Date,r.Time,
     IFNULL((SELECT SUM(Amount) FROM payment WHERE ReservationID = r.ReservationID), 0) AS total_amount_pay,
@@ -26,7 +26,7 @@ INNER JOIN packages p ON p.PackageID = r.PackageID where r.Status IN (1,2) and r
     END AS payment_status
 FROM reservation r 
 INNER JOIN accounts a ON a.ID = r.Reserved_by
-INNER JOIN packages p ON p.PackageID = r.PackageID";
+INNER JOIN packages p ON p.PackageID = r.PackageID order by r.ReservationID desc ";
 }
           
             $stmt = mysqli_prepare($conn, $query);

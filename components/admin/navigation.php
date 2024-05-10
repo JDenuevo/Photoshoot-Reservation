@@ -66,7 +66,7 @@
                   <i class="ti ti-address-book"></i>
                 </span>
                 <span class="hide-menu">Reservations</span>
-                <span class="badge bg-info position-absolute top-50 start-100 translate-middle rounded-circle" style="font-size: 0.75rem;">1</span>
+                <span class="badge bg-info position-absolute top-50 start-100 translate-middle rounded-circle" id="reservationCount" style="font-size: 0.75rem;">0</span>
               </a>
             </li>
 
@@ -88,7 +88,6 @@
               <a class="sidebar-link" type="button" id="reviews_label" onclick="dispContent('reviews')">
                 <span>
                   <i class="ti ti-sparkles"></i>
-                  <span class="badge bg-info position-absolute top-50 start-100 translate-middle rounded-circle" style="font-size: 0.75rem;">5</span>
                 </span>
                 <span class="hide-menu">Reviews</span>
               </a>
@@ -142,6 +141,14 @@
 </script>
 
 <script>
+   $.ajax({
+    url: "../api/count/getReservationCount.php",
+    type: "POST",
+    dataType: "json",
+    success: function (response) {
+     $('#reservationCount').text(response);
+    }
+  });
   // Function to add active class to the sidebar item on page load
   function addActiveClass() {
     const dashboardLink = document.getElementById('dashboard_label');
