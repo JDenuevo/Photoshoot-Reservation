@@ -6,7 +6,6 @@ $response = array();
 
     $packageId = $_POST['packageID'];
 
-    if (checkToken($response)) {
         if ($packageId != null) {
             $query = "SELECT p.*,a.FirstName as CreatedName FROM packages p inner join accounts a on p.Created_by = a.ID WHERE PackageID = ? and p.Status = 1";
             $stmt = mysqli_prepare($conn, $query);
@@ -33,7 +32,7 @@ $response = array();
         }
 
         mysqli_stmt_close($stmt);
-    } 
+    
 
 // Output the response as JSON
 header('Content-Type: application/json');

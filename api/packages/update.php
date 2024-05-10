@@ -7,18 +7,16 @@ if (checkToken($response)){
     $createdBy = $_SESSION['userid'];
     //$createdBy =$_POST['createdBy'];
     $packageID = $_POST['packageID'];
-    $roomID = $_POST['roomID'];
     $packageName = $_POST['packageName'];
     $pax = $_POST['pax'];
     $price = $_POST['price'];
-    $timeLimit = $_POST['timeLimit'];
     $description = $_POST['description'];
 
-        $updateQuery = "update packages set RoomID = ? , PackageName = ?, Pax = ? ,Price = ? , TimeLimit = ?, Description = ? , Created_by = ?  where PackageID = ?";
+        $updateQuery = "update packages set  PackageName = ?, Pax = ? ,Price = ? , Description = ? , Created_by = ?  where PackageID = ?";
         $stmt = mysqli_prepare($conn, $updateQuery);
 
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, 'isiiisii',   $roomID,  $packageName, $pax, $price,  $timeLimit,$description,$createdBy, $packageID);
+            mysqli_stmt_bind_param($stmt, 'siisii',   $packageName, $pax, $price,$description,$createdBy, $packageID);
             $result = mysqli_stmt_execute($stmt);
 
             if ($result) {

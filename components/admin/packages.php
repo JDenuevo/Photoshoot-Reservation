@@ -12,11 +12,9 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Room ID</th>
                     <th scope="col">Package Name</th>
                     <th scope="col">Pax</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Time</th>
                     <th scope="col">Description</th>
                     <th scope="col">Created by</th>
                     <th scope="col">Action</th>            
@@ -41,17 +39,9 @@
       </div>
       <div class="modal-body">
         <div class="row g-2">
-          
-          <div class="col-6">
-            <div class="form-floating mb-3">
-            <select class="form-control rounded-4" id="roomName" placeholder="Room Name" required>
-            </select>
+        
 
-              <label for="" class="form-label">Room Name</label>
-            </div>
-          </div>
-
-          <div class="col-6">
+          <div class="col-12">
             <div class="form-floating mb-3">
               <input type="text" class="form-control rounded-4" id="packageName" placeholder="Package Name" required>
               <label for="" class="form-label">Package Name</label>
@@ -69,13 +59,8 @@
               <label for="" class="form-label">Price</label>
             </div>
           </div>
-          <div class="col-6">
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control rounded-4" id="time" placeholder="Time" required>
-              <label for="" class="form-label">Time</label>
-            </div>
-          </div>
-          <div class="col-6">
+    
+          <div class="col-12">
             <div class="form-floating mb-3">
               <input type="text" class="form-control rounded-4" id="description" placeholder="Description" required>
               <label for="" class="form-label">Description</label>
@@ -103,15 +88,7 @@
       <div class="modal-body">
         <div class="row g-2">
          
-        <div class="col-6">
-            <div class="form-floating mb-3">
-            <select class="form-control rounded-4" id="updatedRoomName" placeholder="Room Name" required>
-            </select>
-
-              <label for="" class="form-label">Room Name</label>
-            </div>
-          </div>
-          <div class="col-6">
+          <div class="col-12">
             <div class="form-floating mb-3">
               <input type="text" class="form-control rounded-4" id="updatedPackageName" placeholder="Package Name" required>
               <label for="" class="form-label">Package Name</label>
@@ -129,13 +106,8 @@
               <label for="" class="form-label">Price</label>
             </div>
           </div>
-          <div class="col-6">
-            <div class="form-floating mb-3">
-              <input type="text" class="form-control rounded-4" id="updatedTimeLimit" placeholder="Time" required>
-              <label for="" class="form-label">Time</label>
-            </div>
-          </div>
-          <div class="col-6">
+       
+          <div class="col-12">
             <div class="form-floating mb-3">
               <input type="text" class="form-control rounded-4" id="UpdatedDescription" placeholder="Description" required>
               <label for="" class="form-label">Description</label>

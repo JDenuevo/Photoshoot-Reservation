@@ -5,23 +5,24 @@ $response = array();
 
     session_start();
 
-    $status = $_POST['status'];
-    $reservationID = $_POST['reservationID'];
-    $link = $_POST['link'];
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $userid = $_POST['userid'];
 
-        $updateQuery = "update reservation set Status = ? , Link = ? where ReservationID = ?";
+        $updateQuery = "update accounts set FirstName = ? , LastName = ? , Email = ? where ID = ?";
         $stmt = mysqli_prepare($conn, $updateQuery);
 
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, 'isi',   $status, $link, $reservationID);
+            mysqli_stmt_bind_param($stmt, 'sssi',   $firstname, $lastname, $email,  $userid);
             $result = mysqli_stmt_execute($stmt);
 
             if ($result) {
                 $response['status'] = true;
-                $response['message'] = "Reservation successfully updated";
+                $response['message'] = "Account successfully updated";
             } else {
                 $response['status'] = false;
-                $response['message'] = "Reservation update failed";
+                $response['message'] = "Account update failed";
             }
 
             mysqli_stmt_close($stmt);

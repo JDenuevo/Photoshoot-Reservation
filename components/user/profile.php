@@ -24,10 +24,10 @@
     });
   });
 </script>
-
+<?php session_start(); ?>
 <div class="text-center">
   <hr>
-
+  <input type="text" class="form-control" id="userid" value="<?php echo $_SESSION['userid']; ?>" hidden>
   <h4 class="fw-bold">Account Profile</h4>
   <p class="text-muted">You can change your <span class="text-primary fw-semibold">Daydream</span> Profile here.</p>
 
@@ -45,37 +45,27 @@
   <div class="row mt-3">
     <div class="col-6">
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="">
+        <input type="text" class="form-control" id="firstname">
         <label for="floatingInput">First name</label>
       </div>
     </div>
     <div class="col-6">
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="">
+        <input type="text" class="form-control" id="lastname">
         <label for="floatingInput">Last name</label>
       </div>
     </div>
     <div class="col-12">
       <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="">
+        <input type="email" class="form-control" id="email" disabled>
         <label for="floatingInput">Email</label>
       </div>
     </div>
-    <div class="col-6">
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="">
-        <label for="floatingInput">Password</label>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="">
-        <label for="floatingInput">Confirm Password</label>
-      </div>
-    </div>
+
   </div>
 
-  <button class="btn btn-primary btn-lg rounded-pill fw-semibold mt-5 w-50" type="submit">Save Changes</button>
+  <button class="btn btn-primary btn-lg rounded-pill fw-semibold mt-5 w-50" type="button" id="saveBtn" >Save Changes</button>
 
 
 </div>
+<script src="../src/jquery/userProfile.js"></script>

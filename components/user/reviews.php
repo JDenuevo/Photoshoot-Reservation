@@ -16,34 +16,13 @@
 </style>
 
 <script>
- const stars = document.querySelectorAll('.star-icon');
-
-stars.forEach(star => {
-  star.addEventListener('click', () => {
-    const rating = star.dataset.rating;
-    stars.forEach(icon => icon.classList.remove('active'));
-    for (let i = 0; i < rating; i++) {
-      stars[i].classList.add('active');
-    }
-  });
-});
-
-// Add click event listener to document body
-document.body.addEventListener('click', event => {
-  const starRatingSection = document.querySelector('.star-rating');
-  const isClickedInside = starRatingSection.contains(event.target);
-
-  if (!isClickedInside) {
-    stars.forEach(icon => icon.classList.remove('active'));
-  }
-});
 
 </script>
-
+<?php session_start(); ?>
 <div class="text-center">
   <img src="../assets/images/undraw_camera.png" class="img-fluid w-25">
   <h5 class="fw-bold my-3">Share your Story: Rate your Experience!</h5>
-
+  <input type="text" class="form-control" id="userid" value="<?php echo $_SESSION['userid']; ?>" hidden>
   <div class="star-rating justify-content-center d-flex">
 
     <svg class="star-icon mx-2" width="40" height="40" data-rating="1" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star">
@@ -72,13 +51,21 @@ document.body.addEventListener('click', event => {
     </svg>
 
   </div>
-
+  <div class="col-12 mt-5">
+      <div class="form-floating">
+        <select class="form-select" id="packages" aria-label="Floating label select example" required>
+          <!-- <option selected disabled>--SELECT PACKAGE--</option> -->
+        </select>
+        <label for="floatingSelect">Select Main Package</label>
+      </div>
+    </div>
   <div class="form-floating my-3">
-    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+    <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" required></textarea>
     <label for="floatingTextarea">Comment..</label>
   </div>
 
-  <button class="btn btn-primary btn-lg rounded-pill fw-semibold mt-5 w-50" type="submit">Rate</button>
+  <button class="btn btn-primary btn-lg rounded-pill fw-semibold mt-5 w-50" id="btnRate" type="submit">Rate</button >
 
 </div>
 
+<script src="../src/jquery/userReview.js"></script>

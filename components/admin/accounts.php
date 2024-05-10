@@ -11,35 +11,16 @@
             <hr>
             <thead>
                 <tr>
-                    <th scope="col">Account ID</th>
+                    <th scope="col">#</th>
                     <th scope="col">Firstname</th>
                     <th scope="col">Lastname</th>
                     <th scope="col">Email</th>
                     <th scope="col">UserType</th>
-                    <th scope="col">Status</th>
                     <th scope="col">Action</th>        
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Gmar</td>
-                    <td>Cutie</td>
-                    <td>gmarcutie</td>
-                    <td>Admin</td>
-                    <td>
-                      <select class="form-select rounded-4" id="floatingSelect">
-                        <option value="1">Active</option>
-                        <option value="2">In-active</option>
-                      </select>
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#modal-update-accounts">
-                            <i class="ti ti-edit"></i> Update
-                        </button>
-                        <button class="btn btn-sm btn-danger"><i class="ti ti-trash"></i> Remove</button>
-                    </td>
-                </tr>
+            <tbody id="accountsData">
+                
             </tbody>
         </table>
 
@@ -174,3 +155,4 @@
   </div>
 </div>
 
+<script src="../src/jquery/accounts.js"></script>

@@ -4,7 +4,6 @@ include('../../php/checkToken.php');
  $response = array();
 
 
-if (checkToken($response)){
 
         $reviewID = $_POST['reviewID'];
         if ($reviewID != null) {
@@ -14,7 +13,9 @@ if (checkToken($response)){
             mysqli_stmt_bind_param($stmt, 'i', $reviewID);
         } else {
             // Fetch all rooms if room ID is not provided
-            $query = "SELECT * FROM reviews";
+            $query = "SELECT p.PackageName,r.Rate,r.Review,r.Created_at,concat(a.FirstName,' ',a.LastName) as name FROM reviews r 
+            INNER join packages p on p.PackageID = r.PackageID
+            INNER join accounts a on a.ID = r.Created_by";
             $stmt = mysqli_prepare($conn, $query);
         }
 
@@ -29,7 +30,7 @@ if (checkToken($response)){
             }
 
             $response['status'] = true;
-            $response['rooms'] = $rate;
+            $response['review'] = $rate;
         } else {
             $response['status'] = false;
             $response['message'] = "Failed to fetch reviews";
@@ -37,7 +38,7 @@ if (checkToken($response)){
         }
 
         mysqli_stmt_close($stmt);
-}
+
 
 // Output the response as JSON
 header('Content-Type: application/json');

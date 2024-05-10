@@ -8,22 +8,19 @@ $response = array();
         session_start();
         $createdBy = $_SESSION['userid'];
        // $createdBy =$_POST['createdBy'];
-
-        $roomID = $_POST['roomID'];
         $packageName = $_POST['packageName'];
         $pax = $_POST['pax'];
         $price = $_POST['price'];
-        $timeLimit = $_POST['timeLimit'];
         $description = $_POST['description'];
 
         
         // Prepare and execute the SQL query
-        $insertQuery = "INSERT INTO packages (RoomID, PackageName, Pax, Price, TimeLimit, Description, Created_by) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $insertQuery = "INSERT INTO packages ( PackageName, Pax, Price, Description, Created_by) 
+                        VALUES ( ?, ?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $insertQuery);
 
         if ($stmt) {
-            mysqli_stmt_bind_param($stmt, 'isidisi', $roomID, $packageName, $pax, $price, $timeLimit, $description, $createdBy);
+            mysqli_stmt_bind_param($stmt, 'sidsi', $packageName, $pax, $price, $description, $createdBy);
             $result = mysqli_stmt_execute($stmt);
 
             if ($result) {

@@ -1,3 +1,4 @@
+
 <style scoped>
   #calendar {
     max-width: 100%;
@@ -11,54 +12,67 @@
 
   <div id='calendar'></div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-      var today = moment().format('YYYY-MM-DD'); // Get current date in YYYY-MM-DD format
+ <script>
+  document.addEventListener('DOMContentLoaded', function() {
+  var calendarEl = document.getElementById('calendar');
+  var today = moment().format('YYYY-MM-DD'); // Get current date in YYYY-MM-DD format
+  var eventsData = []; // Define empty array to hold event data
 
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
-        initialDate: today, // Set initial date to current date
-        navLinks: true, // can click day/week names to navigate views
-        selectable: true,
-        selectMirror: true,
-        select: function(arg) {
-          var title = prompt('Event Title:');
-          if (title) {
-            calendar.addEvent({
-              title: title,
-              start: arg.start,
-              end: arg.end,
-              allDay: arg.allDay
-            })
-          }
-          calendar.unselect()
-        },
-        eventClick: function(arg) {
-          if (confirm('Are you sure you want to delete this event?')) {
-            arg.event.remove()
-          }
-        },
-        editable: true,
-        dayMaxEvents: true,
-        events: []
-      });
+  // Fetch reservation data from API
+  $.ajax({
+    url: '../api/reservation/getDateTimeReservation.php',
+    type: 'GET',
+    success: function(response) {
+      // Update eventsData with fetched reservation data
+      eventsData = response.datetimeOccupied;
+      // Render calendar after fetching data
+      renderCalendar();
+    },
+    error: function(xhr, status, error) {
+      console.error('Error fetching data:', error);
+    }
+  });
 
-      calendar.render();
+  // Function to render FullCalendar with fetched data
+// Function to render FullCalendar with fetched data
+function renderCalendar() {
+  var calendar = new FullCalendar.Calendar(calendarEl, {
+    eventDisplay: 'block', // Display the event as a block element, showing the title, start time, and end time
+  eventTimeFormat: { hour: 'numeric', minute: '2-digit', omitZeroMinute: false },
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    },
+    initialDate: today,
+    navLinks: true,
+    selectable: true,
+    selectMirror: true,
+    dayMaxEvents: true,
+    events: eventsData.map(function(event) { // Map eventsData to include both start and end times
+      return {
+ title :'reserve',
+    start: event.start, // Start time
+    end: event.end, // End time
+};
 
-      // Override the text of the "month view" button with an icon
-      var monthButton = calendarEl.querySelector('.fc-dayGridMonth-button');
-      monthButton.innerHTML = '<i class="ti ti-table"></i> View in Table ';
+    })
+  });
 
-      // Override the text of the "week view" button with an icon
-      var weekButton = calendarEl.querySelector('.fc-timeGridWeek-button');
-      weekButton.innerHTML = '<i class="ti ti-calendar-event"></i> View in Calendar ';
-    });
-  </script>
+  calendar.render();
+
+  // Override the text of the "month view" button with an icon
+  var monthButton = calendarEl.querySelector('.fc-dayGridMonth-button');
+  monthButton.innerHTML = '<i class="ti ti-table"></i> View in Table ';
+
+  // Override the text of the "week view" button with an icon
+  var weekButton = calendarEl.querySelector('.fc-timeGridWeek-button');
+  weekButton.innerHTML = '<i class="ti ti-calendar-event"></i> View in Calendar ';
+}
+
+});
+</script>
+
 
 </body>
 

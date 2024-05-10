@@ -1,3 +1,5 @@
+
+<?php session_start(); ?>
 <style>
   .form-check-input[type="radio"] {
     width: 1.5em; 
@@ -11,7 +13,7 @@
 
   <h4 class="fw-bold">Reservation</h4>
   <p class="text-muted">Please fill out to input fields to reserve a slot</p>
-
+  <input type="text" class="form-control" id="userid" value="<?php echo $_SESSION['userid']; ?>" hidden>
   <div class="row">
     <div class="col-6">
       <div class="form-floating mb-3">
@@ -21,7 +23,7 @@
     </div>
     <div class="col-6">
       <div class="form-floating">
-        <select class="form-select" id="package" aria-label="Floating label select example">
+        <select class="form-select" id="time" aria-label="Floating label select example">
           <option selected disabled>Open this select menu</option>
           <option value="11:00:00">11:00 AM</option>
           <option value="11:30:00">11:30 AM</option>
@@ -50,8 +52,8 @@
 
     <div class="col-12">
       <div class="form-floating">
-        <select class="form-select" id="package" aria-label="Floating label select example" required>
-          <option selected disabled>--SELECT TIME SLOT--</option>
+        <select class="form-select" id="packages" aria-label="Floating label select example" required>
+          <!-- <option selected disabled>--SELECT PACKAGE--</option> -->
         </select>
         <label for="floatingSelect">Select Main Package</label>
       </div>
@@ -65,57 +67,21 @@
         <tr>
           <th scope="col" hidden>Package ID</th>
           <th scope="col">Package</th>
-          <th scope="col">Maximum Capacity</th>
+          <th scope="col">Capacity</th>
           <th scope="col">Time Limit</th>
           <th scope="col">Files</th>
           <th scope="col">Cost</th>
         </tr>
       </thead>
-      <tbody>
-        <tr>
-          <th scope="row" hidden>1</th>
-          <td>Package A</td>
-          <td>1-2 Persons</td>
-          <td>15 Minutes</td>
-          <td>All soft copies</td>
-          <td>PHP 549</td>
-        </tr>
+      <tbody id="packagesData">
+        
       </tbody>
     </table>
   </div>
 
-  <div class="text-start my-2">
-    <label class="fw-semibold fs-5">Payment Options</label>
-    <div class="form-check my-3">
-      <input class="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-      <label class="form-check-label fs-6" for="flexRadioDefault2">
-        Pay a Downpayment
-      </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input me-2" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-      <label class="form-check-label fs-6" for="flexRadioDefault2">
-        Pay a Full payment
-      </label>
-    </div>
-  </div>
+
 
   <button class="btn btn-primary btn-lg rounded-pill fw-semibold mt-5 w-50" type="button" id="reserveBtn">Request Appointment</button>
 
 </div>
-<script>
-  $(document).ready(function(){
-    $('#reserveBtn').click(function (){
-      var packageID = $('#package').val();
-
-      alert(packageID);
-    });
-  });
-
-  function getPackage(id){
-    $.ajax({
-      url:'../api/package/get.php',
-    })
-  }
-</script>
-
+<script src="../src/jquery/userReservation.js"></script>

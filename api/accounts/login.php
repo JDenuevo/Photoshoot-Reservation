@@ -4,11 +4,11 @@ include('../../php/checkToken.php');
 session_start();
 $response = array();
 
-if (checkToken($response)) {
+
     $email = $_POST['email'];
     $password = md5($_POST['password']);
 
-    $query = "SELECT * FROM accounts WHERE Email = ? AND Password = ?";
+    $query = "SELECT * FROM accounts WHERE Email = ? AND Password = ? and Status = 1";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("ss", $email, $password);
     $stmt->execute();
@@ -18,9 +18,12 @@ if (checkToken($response)) {
         $row = $result->fetch_assoc();
     
         $_SESSION['userid']=$row['ID'];
-        $response['token']=$row['Token'];
+        $response['userid']=$row['ID'];
+        $response['userFirstname']=$row['FirstName'];
+        $response['userLastname']=$row['LastName'];
         $response['userid']=$row['ID'];
         $response['usertype']=$row['UserType'];
+        $response['email']=$row['Email'];
         $response['status'] = true;
         $response['message'] = "Login successful";
 
@@ -29,7 +32,7 @@ if (checkToken($response)) {
         $response['status'] = false;
         $response['message'] = "Your credentials doesn't match.";
     }
-}
+
 
 header('Content-Type: application/json');
 echo json_encode($response);

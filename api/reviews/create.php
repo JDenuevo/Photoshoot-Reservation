@@ -3,7 +3,7 @@ include('../../inc/config.php');
 include('../../php/checkToken.php');
 $response = array();
 
-if (checkToken($response)){
+
     $packageID = $_POST['packageID'];
     $Rate = $_POST['rate'];
     $Review = $_POST['review'];
@@ -31,8 +31,7 @@ if (checkToken($response)){
         // Log the error for debugging
         error_log("Prepared statement failed: " . mysqli_error($conn));
     }
-}
-       
+  
   
 
 // Output the response as JSON

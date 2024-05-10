@@ -34,9 +34,9 @@ if (isset($_GET['code'])) {
        
       }else{
         if(insertFromGoogleAccounts($email, $first_name, $last_name)){
-          
+          header('location: user.php');
         }else{
-
+          header('location: index.php');
         }
       }
     } else {
@@ -63,21 +63,28 @@ function getUserType($email){
     
   }
   function checkIfEmailExist($email) {
-     global $conn; 
+    global $conn; 
+    
+    // Prevent SQL Injection
     $email = mysqli_real_escape_string($conn, $email);
   
     $sql = "SELECT * FROM accounts WHERE Email = '$email'";
   
     $result = mysqli_query($conn, $sql);
   
-    if (mysqli_num_rows($result) > 0) {
+    if ($result && mysqli_num_rows($result) > 0) {
+        // Fetch the result row
+        $row = mysqli_fetch_assoc($result);
+        
+        // Store user ID in session
+        $_SESSION['userid'] = $row['ID'];
         
         return true;
     } else {
-    
         return false;
     }
-  }
+}
+
   function insertFromGoogleAccounts($email, $fname,$lname) {
     global $conn; // Assuming $conn is your database connection object
 
@@ -89,6 +96,7 @@ function getUserType($email){
     $sql = "INSERT INTO accounts (Email, FirstName,LastName) VALUES ('$email', '$fname', '$lname')";
 
     if (mysqli_query($conn, $sql)) {
+      
        return true;
     } else {
       return false;
